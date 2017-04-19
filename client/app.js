@@ -5,8 +5,7 @@ class ViewManager {
 		document.getElementById('form-numbers')
 		.addEventListener(
 			'submit',
-			this.onSubmit);
-			//this.onSubmit.bind(this));
+			this.onSubmit.bind(this));
 	}
 	onSubmit(event) {
 		event.preventDefault();
@@ -15,13 +14,13 @@ class ViewManager {
 		num1 = parseInt(num1, 10);
 		num2 = parseInt(num2, 10);
 		const product = multiply(num1, num2);
-
-		//this.renderProduct(product);
-		alert(product);
 	}
-	//renderProduct(product) {
-	//	document.querySelector('.product').textContent = product;
-	//}
+
+	//function to addCell
+
+	renderProduct(product) {
+		document.querySelectorAll('.product').textContent = product;
+	}
 }
 const viewManager = new ViewManager();
 viewManager.connectEventHandlers();
