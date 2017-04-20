@@ -23,9 +23,13 @@ class ViewManager {
 	}
 
 	computeAnswer(valuesArray) {
-		const product = valuesArray.reduce((a, b) => multiply(a,b), 1);
-		console.log(product);
-		this.renderProduct(product);
+		let numsToProduct = valuesArray.filter(element => Number.isInteger(element));
+		if (numsToProduct.length >= 2) {
+			numsToProduct = numsToProduct.reduce((a, b) => multiply(a, b));
+			this.renderProduct(numsToProduct);
+		} else {
+			this.renderProduct(NaN);
+		}
 	}
 
 	addsCellToPage() {
