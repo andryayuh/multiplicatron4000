@@ -3,24 +3,43 @@ const multiply = require('./multiplier.js');
 class ViewManager {
 	connectEventHandlers() {
 		document.getElementById('form-numbers')
-		.addEventListener(
-			'submit',
-			this.onSubmit.bind(this));
+			.addEventListener(
+				'submit',
+				this.onSubmit.bind(this));
+		document.getElementById('addCellButton')
+			.addEventListener(
+				'click',
+				this.addsCellToPage.bind(this));
 	}
+
 	onSubmit(event) {
 		event.preventDefault();
-		let num1 = document.getElementById('input-num1').value;
-		let num2 = document.getElementById('input-num2').value;
-		num1 = parseInt(num1, 10);
-		num2 = parseInt(num2, 10);
-		const product = multiply(num1, num2);
+		let allInputs = document.querySelectorAll('.factor')
+		let mappedValues = [];
+		allInputs.forEach(function(input) {
+			mappedValues.push(parseInt(input.value, 10));
+		})
+		this.computeAnswer(mappedValues);
 	}
 
-	//function to addCell
+	computeAnswer(valuesArray) {
+		const product = valuesArray.reduce((a, b) => multiply(a,b), 1);
+		console.log(product);
+		this.renderProduct(product);
+	}
+
+	addsCellToPage() {
+		let outerDiv = document.createElement("DIV");
+		let input = document.createElement("INPUT");
+		input.className = "factor";
+		outerDiv.appendChild(input);
+		document.getElementById('input-container').appendChild(outerDiv);
+	}
 
 	renderProduct(product) {
-		document.querySelectorAll('.product').textContent = product;
+		document.getElementById('product').textContent = product;
 	}
+	
 }
 const viewManager = new ViewManager();
 viewManager.connectEventHandlers();

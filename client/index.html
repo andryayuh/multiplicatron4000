@@ -7,22 +7,22 @@
 
 <body>
 	<form id="form-numbers">
-		<div>
-			<input id="input-num1" type="text" autocomplete="off" />
+		<div id="input-container">
+			<div>
+				<input class="factor" type="text" autocomplete="off" />
+			</div>
+			<div>
+				<input class="factor" type="text" autocomplete="off" />
+			</div>
 		</div>
-		<div>
-			<input id="input-num2" type="text" autocomplete="off" />
-		</div>
-			
 		<hr>
-
-		<div class="product">?</div>
-		<button>Calculate!</button>
-		<div>
-			<button onclick="addCell()">New factor</button>
-		</div>
-
+		<div id="product">?</div>
+		<button class="funButton">Calculate!</button>
 	</form>
+	<div class="button-container">
+		<button class="funButton" id="addCellButton">New factor</button>
+	</div>
+	
 	<script src="bundle.js"></script>
 </body>
 
